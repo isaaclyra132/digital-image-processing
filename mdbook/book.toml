@@ -1,0 +1,9 @@
+[book]
+authors = ["isaaclyra"]
+language = "pt"
+multilingual = false
+src = "src"
+title = "Processamento Digital de Imagens - Isaac Lyra"
+
+[build]
+build-dir = "../docs"
