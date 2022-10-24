@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introdução</a></li><li class="chapter-item expanded "><a href="../unit1/unit1.html"><strong aria-hidden="true">2.</strong> Unidade 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../unit1/e1-regions.html" class="active"><strong aria-hidden="true">2.1.</strong> Exercicio 1 - Negativo de uma região</a></li><li class="chapter-item expanded "><a href="../unit1/e2-trocaregioes.html"><strong aria-hidden="true">2.2.</strong> Exercício 2 - Troca de quadrantes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introdução</a></li><li class="chapter-item expanded "><a href="../unit1/unit1.html"><strong aria-hidden="true">2.</strong> Unidade 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../unit1/e1-regions.html" class="active"><strong aria-hidden="true">2.1.</strong> Exercicio 1 - Negativo de uma região</a></li><li class="chapter-item expanded "><a href="../unit1/e2-trocaregioes.html"><strong aria-hidden="true">2.2.</strong> Exercício 2 - Troca de quadrantes</a></li><li class="chapter-item expanded "><a href="../unit1/e3-labeling.html"><strong aria-hidden="true">2.3.</strong> Exercício 3 - Preenchendo regiões</a></li><li class="chapter-item expanded "><a href="../unit1/e4-equalize.html"><strong aria-hidden="true">2.4.</strong> Exercício 4 - Equalização do Histograma</a></li><li class="chapter-item expanded "><a href="../unit1/e5-motiondetector.html"><strong aria-hidden="true">2.5.</strong> Exercício 5 - Detector de Movimento via Histograma</a></li><li class="chapter-item expanded "><a href="../unit1/e6-laplgauss.html"><strong aria-hidden="true">2.6.</strong> Exercício 6 - Laplaciano do Gaussiano de Imagens</a></li><li class="chapter-item expanded "><a href="../unit1/e7-tiltshift.html"><strong aria-hidden="true">2.7.</strong> Exercício 7 - Tilt Shift</a></li><li class="chapter-item expanded "><a href="../unit1/e8-tiltshiftvideo.html"><strong aria-hidden="true">2.8.</strong> Exercício 8 - Tilt Shift em Vídeos</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -143,7 +143,105 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="exercício-1---negativo-de-uma-região"><a class="header" href="#exercício-1---negativo-de-uma-região">Exercício 1 - Negativo de uma região</a></h1>
-<h2 id="apenas-teste"><a class="header" href="#apenas-teste">Apenas teste</a></h2>
+<p>EM CONSTRUÇÃO</p>
+<h2 id="código"><a class="header" href="#código">Código</a></h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+struct Point
+{
+    int x;
+    int y;
+};
+
+int main(int argc, char **argv)
+{
+    cv::Mat image;
+    Point p1, p2;
+    bool pontoValido = false;
+
+    image = cv::imread(&quot;./assets/biel.png&quot;, cv::IMREAD_GRAYSCALE);
+    if (!image.data)
+    {
+        std::cout &lt;&lt; &quot;Não abriu imagem&quot; &lt;&lt; std::endl;
+    }
+
+    cv::namedWindow(&quot;Imagem Original&quot;, cv::WINDOW_AUTOSIZE);
+    cv::imshow(&quot;Imagem Original&quot;, image);
+
+    // DEFININDO PONTOS VÁLIDOS
+    std::cout &lt;&lt; &quot;Digite o X e Y do Ponto 1: &quot;;
+    do
+    {
+        std::cin &gt;&gt; p1.x &gt;&gt; p1.y;
+        image.size();
+        if (p1.x &lt; 0 || p1.x &gt; image.rows || p1.y &lt; 0 || p1.y &gt; image.cols)
+        {
+            std::cout &lt;&lt; &quot;Ponto inválido, digite o X e Y do Ponto 1 novamente: &quot;;
+        }
+        else
+        {
+            pontoValido = true;
+        }
+    } while (!pontoValido);
+
+    pontoValido = false;
+
+    std::cout &lt;&lt; &quot;Digite o X e Y do Ponto 2: &quot;;
+    do
+    {
+        std::cin &gt;&gt; p2.x &gt;&gt; p2.y;
+        if (p2.x &lt; 0 || p2.x &gt; image.rows || p2.y &lt; 0 || p2.y &gt; image.cols)
+        {
+            std::cout &lt;&lt; &quot;Ponto inválido, digite o X e Y do Ponto 2 novamente: &quot;;
+        }
+        else
+        {
+            pontoValido = true;
+        }
+    } while (!pontoValido);
+
+    // TESTE DE INICIO E FIM
+    int inicioX, inicioY, finalX, finalY;
+    if (p1.x &gt; p2.x)
+    {
+        inicioX = p2.x;
+        finalX = p1.x;
+    }
+    else
+    {
+        inicioX = p1.x;
+        finalX = p2.x;
+    }
+
+    if (p1.y &gt; p2.y)
+    {
+        inicioY = p2.y;
+        finalY = p1.y;
+    }
+    else
+    {
+        inicioY = p1.y;
+        finalY = p2.y;
+    }
+
+    // APLICANDO EFEITO NEGATIVO A REGIÃO
+    for (int x = inicioX; x &lt; finalX; x++)
+    {
+        for (int y = inicioY; y &lt; finalY; y++)
+        {
+            image.at&lt;uchar&gt;(x, y) = 255 - image.at&lt;uchar&gt;(x, y);
+        }
+    }
+
+    cv::namedWindow(&quot;Imagem Negativa&quot;, cv::WINDOW_AUTOSIZE);
+    cv::imshow(&quot;Imagem Negativa&quot;, image);
+    cv::waitKey();
+    return 0;
+}
+</code></pre>
+<h2 id="resultado"><a class="header" href="#resultado">Resultado</a></h2>
+<p>EM CONSTRUÇÃO</p>
 
                     </main>
 
