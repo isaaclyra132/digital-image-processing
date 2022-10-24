@@ -1,10 +1,3 @@
-# Exercício 1 - Negativo de uma região
-
-EM CONSTRUÇÃO
-
-## Código
-
-```cpp
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -99,8 +92,3 @@ int main(int argc, char **argv)
     cv::waitKey();
     return 0;
 }
-```
-
-## Resultado
-
-EM CONSTRUÇÃO

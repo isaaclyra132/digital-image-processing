@@ -1,4 +1,4 @@
-# Exercício 2 - Troca de Quadrantes
+# Exercício 7 - Tilt Shift
 
 EM CONSTRUÇÃO
 
