@@ -10,3 +10,7 @@
   - [Exercício 6 - Laplaciano do Gaussiano de Imagens](unit1/e6-laplgauss.md)
   - [Exercício 7 - Tilt Shift](unit1/e7-tiltshift.md)
   - [Exercício 8 - Tilt Shift em Vídeos](unit1/e8-tiltshiftvideo.md)
+- [Unidade 2](./unit2/unit2.md)
+  - [Exercício 1 - Filtro homomórfico](./unit2/e1-dftfilter.md)
+  - [Exercício 2 - Pontilhismo com algoritmo de Canny](./unit2/e2-canny.md)
+  - [Exercício 3 - Quantização vetorial com kmeans](./unit2/e3-kmeans.md)
